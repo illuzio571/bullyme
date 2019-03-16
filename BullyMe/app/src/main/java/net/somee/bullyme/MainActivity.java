@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,13 +45,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        
+        TextView txtDirTest = (TextView) findViewById(R.id.txtDirTest);
+        List<String> fileList = Arrays.asList(this.fileList());
 
-        TextView txtDirTest = findViewById(R.id.txtDirTest);
-        String[] fileList = this.fileList();
-        for (String file : fileList)
+        if (!fileList.contains("answers"))
         {
-            txtDirTest.setText(txtDirTest.getText() + file);
+
         }
+
+
     }
 
     @Override
