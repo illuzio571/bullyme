@@ -13,10 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,14 +41,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        
-        TextView txtDirTest = (TextView) findViewById(R.id.txtDirTest);
-        List<String> fileList = Arrays.asList(this.fileList());
 
-        if (!fileList.contains("answers"))
-        {
+        //TextView txtDirTest = (TextView) findViewById(R.id.txtDirTest);
+        //List<String> fileList = Arrays.asList(this.fileList());
 
-        }
+        //if (!fileList.contains("answers"))
+        //{
+
+        //}
 
 
     }
