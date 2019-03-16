@@ -63,19 +63,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-                Intent intent = new Intent(this, Questionnaire.class);
-                startActivity(intent);
-                this.finish();
-            } else if (id == R.id.nav_questionnaire) {
-                Intent intent = new Intent(this, Questionnaire.class);
-                startActivity(intent);
-                this.finish();
-            } else if (id == R.id.nav_schedule) {
-                Intent intent = new Intent(this, Questionnaire.class);
-                startActivity(intent);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            this.finish();
+        } else if (id == R.id.nav_questionnaire) {
+            Intent intent = new Intent(this, Questionnaire.class);
+            startActivity(intent);
+            this.finish();
+        } else if (id == R.id.nav_schedule) {
+            Intent intent = new Intent(this, Schedule.class);
+            startActivity(intent);
             this.finish();
         } else if (id == R.id.nav_stop) {
-            Intent intent = new Intent(this, Questionnaire.class);
+            Intent intent = new Intent(this, Stop.class);
             startActivity(intent);
             this.finish();
         }
