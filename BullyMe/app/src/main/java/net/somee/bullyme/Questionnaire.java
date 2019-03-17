@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Questionnaire extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
