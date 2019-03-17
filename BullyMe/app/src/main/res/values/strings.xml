@@ -17,6 +17,7 @@
     Value name:Question type:Question content
     -->
     <string-array name="Questions">
+        <item>test;bool;This is a test.</item>
         <item>name;text;What is your name?</item>
         <item>age;text;How old are you?</item>
         <item>mom;text;What\'s your mom\'s name?</item>

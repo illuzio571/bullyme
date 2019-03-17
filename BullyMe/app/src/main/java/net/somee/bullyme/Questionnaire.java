@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.w3c.dom.Document;
@@ -66,6 +68,22 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
             EditText editText = new EditText(this);
             editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             linearLayout.addView(editText);
+        } else if (type.equals("bool")) {
+            RadioGroup radioGroup = new RadioGroup(this);
+            radioGroup.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            RadioButton btnYes = new RadioButton(this);
+            btnYes.setText("Yes");
+            btnYes.setTextSize(24);
+            btnYes.setPadding(10, 20, 10, 20);
+            RadioButton btnNo = new RadioButton(this);
+            btnNo.setText("No");
+            btnNo.setTextSize(24);
+            btnNo.setPadding(10, 20, 10, 20);
+            btnYes.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+            btnNo.setLayoutParams(new LinearLayout.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+            radioGroup.addView(btnYes);
+            radioGroup.addView(btnNo);
+            linearLayout.addView(radioGroup);
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +101,31 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
 
                         if (prevType.equals("text")) {
                             EditText editText = (EditText) linearLayout.getChildAt(0);
-                            outputStream.write(("{" + prevName + "};" + editText.getText() + '\n').getBytes());
+                            String response = editText.getText().toString();
+                            if ("".equals(response)) {
+                                outputStream.close();
+                                --currentQuestion;
+                                return;
+                            }
+
+                            outputStream.write(("{" + prevName + "};" + response + '\n').getBytes());
+
+                        } else if (prevType.equals("bool")) {
+                            RadioGroup radioGroup = (RadioGroup) linearLayout.getChildAt(0);
+                            RadioButton btnYes = (RadioButton) radioGroup.getChildAt(0);
+                            RadioButton btnNo = (RadioButton) radioGroup.getChildAt(1);
+                            String response;
+                            if (btnYes.isChecked()) {
+                                response = "true";
+                            } else if (btnNo.isChecked()) {
+                                response = "false";
+                            } else {
+                                outputStream.close();
+                                --currentQuestion;
+                                return;
+                            }
+
+                            outputStream.write(("{" + prevName + "};" + response + '\n').getBytes());
                         }
 
                         outputStream.close();
@@ -104,27 +146,44 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
                             EditText editText = new EditText(Questionnaire.this);
                             editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                             linearLayout.addView(editText);
+                        } else if (type.equals("bool")) {
+                            RadioGroup radioGroup = new RadioGroup(Questionnaire.this);
+                            radioGroup.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                            RadioButton btnYes = new RadioButton(Questionnaire.this);
+                            btnYes.setText("Yes");
+                            btnYes.setTextSize(24);
+                            btnYes.setPadding(10, 20, 10, 20);
+                            RadioButton btnNo = new RadioButton(Questionnaire.this);
+                            btnNo.setText("No");
+                            btnNo.setTextSize(24);
+                            btnNo.setPadding(10, 20, 10, 20);
+                            btnYes.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+                            btnNo.setLayoutParams(new LinearLayout.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+                            radioGroup.addView(btnYes);
+                            radioGroup.addView(btnNo);
+                            linearLayout.addView(radioGroup);
                         }
+
                     } else {
-//                        try {
-//                            FileInputStream inputStream = openFileInput("answers");
-//                            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//                            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//                            StringBuilder sb = new StringBuilder();
-//                            String line;
-//                            while ((line = bufferedReader.readLine()) != null) {
-//                                sb.append(line + " ");
-//                            }
-//                            inputStreamReader.close();
-//
-//                            Snackbar.make(v, sb.toString(), Snackbar.LENGTH_LONG)
-//                                .setAction("Action", null).show();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        Questionnaire.this.finish();
+                        try {
+                            FileInputStream inputStream = openFileInput("answers");
+                            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                            StringBuilder sb = new StringBuilder();
+                            String line;
+                            while ((line = bufferedReader.readLine()) != null) {
+                                sb.append(line + " ");
+                            }
+                            inputStreamReader.close();
+
+                            Snackbar.make(v, sb.toString(), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+//                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                        startActivity(intent);
+//                        Questionnaire.this.finish();
                     }
 
                 }
