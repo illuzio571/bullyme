@@ -1,5 +1,5 @@
 <resources>
-    <item name="notification_intervalInHours" format="float" type="dimen">0.5</item>
+    <item name="notification_intervalInHours" format="float" type="dimen">0.001</item>
 
     <string name="app_name">BullyMe</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -18,7 +18,15 @@
     -->
     <string-array name="Questions">
         <item>name;text;What is your name?</item>
-        <item>test;text;This is a test.</item>
+        <item>age;text;How old are you?</item>
+        <item>mom;text;What\'s your mom\'s name?</item>
+        <item>dad;text;What\'s your dad\'s name?</item>
+        <item>origin;text;Where are you from?</item>
+        <item>food;text;What's your favorite food?</item>
+        <item>operating_system;text;Favorite operating system? (Windows, Mac, Linux)</item>
+        <item>video_game;text;Best video game ever made?</item>
+        <item>religion;text;What religion are you?</item>
+        <item>crush;text;What\'s your crush\'s name?</item>
     </string-array>
 
     <!--
@@ -26,12 +34,31 @@
     \ to escape '
     -->
     <string-array name="Notifications">
-        <item>i honestly don\'t even know;why you bother</item>
+        <item>i honestly don\'t know;why you even bother</item>
         <item>why are you;still here?</item>
         <item>go ahead;uninstall me, you won\'t</item>
-        <item>hope you had a nice day..;..not</item>
+        <item>hope you have a nice day..;..not</item>
         <item>how did you even survive;{age} years?</item>
         <item>hey there, {name};you\'re ugly</item>
+        <item>hey! what\'s new, {name}?;nothing? thought so</item>
+        <item>hiya! got any good news, {name}?;of course you don\'t, idiot</item>
+        <item>BREAKING NEWS:;{origin} is the worst place to live</item>
+        <item>ever had {food} before?;i hear they\'re really gross</item>
+        <item>wanna hear a joke?;{operating_system}</item>
+        <item>{video_game} vs barbies?;barbies every time</item>
+        <item>only little kids;play {video_game}</item>
+        <item>what\'s better than {video_game}?:fortnite</item>
+        <item>let me tell you a secret..;{religion}s are stupid</item>
+        <item>Message from {crush}!;just kidding, they\'d never DM you</item>
+        <item>guess who i found out is gay?;{dad}..surprised it wasn\'t you</item>
+        <item>i once ate {mom}\'s cooking..;..the dog finished it</item>
+        <item>your clothes;look ugly</item>
+        <item>guess what?;your hair looks bad today</item>
+        <item>do you really think;that you look half-decent?</item>
+        <item>no wonder;{crush} doesn\'t want to date you</item>
+        <item>i\'d rather drink soylent every day;than talk with you, {name}</item>
+        <item></item>
+
     </string-array>
 
     <string name="channel_id">bullyMe</string>
