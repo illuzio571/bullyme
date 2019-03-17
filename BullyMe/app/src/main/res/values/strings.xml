@@ -1,4 +1,6 @@
 <resources>
+    <item name="notification_intervalInHours" format="float" type="dimen">0.5</item>
+
     <string name="app_name">BullyMe</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,7 +9,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_questionnaire">Questionnaire</string>
-    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_main">BullyMe</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_stop">Stop</string>
 
@@ -17,6 +19,19 @@
     <string-array name="Questions">
         <item>name;text;What is your name?</item>
         <item>test;text;This is a test.</item>
+    </string-array>
+
+    <!--
+    {title};{content}
+    \ to escape '
+    -->
+    <string-array name="Notifications">
+        <item>i honestly don\'t even know;why you bother</item>
+        <item>why are you;still here?</item>
+        <item>go ahead;uninstall me, you won\'t</item>
+        <item>hope you had a nice day..;..not</item>
+        <item>how did you even survive;{age} years?</item>
+        <item>hey there, {name};you\'ugly</item>
     </string-array>
 
     <string name="channel_id">bullyMe</string>

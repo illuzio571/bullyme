@@ -10,10 +10,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
-
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,9 +27,32 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.setTitle("Home");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        NotificationReceiver notification = new NotificationReceiver();
+
+        ArrayList<String> answers = new ArrayList<>();
+
+        try {
+            FileInputStream in = openFileInput("answers");
+            InputStreamReader inputStreamReader = new InputStreamReader(in);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                answers.add(line);
+            }
+
+            inputStreamReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        TypedValue outValue = new TypedValue();
+        getResources().getValue(R.dimen.notification_intervalInHours, outValue, true);
+        double hours = outValue.getFloat();
+
+        notification.SetAlarm(this, hours);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

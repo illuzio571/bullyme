@@ -2,16 +2,15 @@ package net.somee.bullyme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 public class Stop extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,6 +20,19 @@ public class Stop extends AppCompatActivity implements NavigationView.OnNavigati
         setContentView(R.layout.activity_stop);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String title = "loser, you can't quit me";
+        String content = "i'm more addicting than your love of self-loathing";
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.channel_id))
+                .setSmallIcon(R.drawable.ic_app_transparent)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        //Build and send the notification
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
