@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity
 
         List<String> files = Arrays.asList(this.fileList());
 
-        if (!files.contains("answers")) {
+        /*if (!files.contains("answers")) {
             Intent intent = new Intent(this, Questionnaire.class);
             startActivity(intent);
             this.finish();
-        }
+        }*/
     }
 
     @Override
