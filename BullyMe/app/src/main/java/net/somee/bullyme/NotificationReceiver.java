@@ -91,8 +91,6 @@ public class NotificationReceiver extends BroadcastReceiver {
         Random rand = new Random();
         int random = rand.nextInt(1);
 
-        random = 0;
-
         if (random == 0 ){
             //Grab the personalized version of the notification as a string array { title, content}
             String notification = personalizedNotifications.get(personalizedNotifications.size() - 1);
