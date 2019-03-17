@@ -31,7 +31,7 @@
         <item>go ahead;uninstall me, you won\'t</item>
         <item>hope you had a nice day..;..not</item>
         <item>how did you even survive;{age} years?</item>
-        <item>hey there, {name};you\'ugly</item>
+        <item>hey there, {name};you\'re ugly</item>
     </string-array>
 
     <string name="channel_id">bullyMe</string>

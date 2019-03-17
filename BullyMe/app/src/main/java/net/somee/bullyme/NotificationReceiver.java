@@ -87,16 +87,37 @@ public class NotificationReceiver extends BroadcastReceiver {
             }
         }
 
+        //Grab our list of answers to see if we even have any
+        ArrayList<String> answers = new ArrayList<>();
+
+        try {
+            FileInputStream in = context.openFileInput("answers");
+            InputStreamReader inputStreamReader = new InputStreamReader(in);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                answers.add(line);
+            }
+
+            inputStreamReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //50 - 50 shot of getting a personalized or generic notification
         Random rand = new Random();
-        int random = rand.nextInt(1);
+        int random = rand.nextInt(2);
 
-        if (random == 0 ){
-            //Grab the personalized version of the notification as a string array { title, content}
-            String notification = personalizedNotifications.get(personalizedNotifications.size() - 1);
-            notificationToSend = getPersonalizedNotification(context, notification).split(";", -1);
+        if (answers.size() > 0) {
+            if (random == 0) {
+                //Grab the personalized version of the notification as a string array { title, content}
+                String notification = personalizedNotifications.get(personalizedNotifications.size() - 1);
+                notificationToSend = getPersonalizedNotification(context, notification).split(";", -1);
+            } else {
+                //Grab the generic version as a string array { title, content}
+                notificationToSend = genericNotifications.get(rand.nextInt(genericNotifications.size())).split(";", -1);
+            }
         } else {
-            //Grab the generic version as a string array { title, content}
             notificationToSend = genericNotifications.get(rand.nextInt(genericNotifications.size())).split(";", -1);
         }
 
@@ -132,9 +153,6 @@ public class NotificationReceiver extends BroadcastReceiver {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        answers.add("{name};John");
-        answers.add("{age};18");
 
         for (String replacement : answers){
             if (replacement.contains(key)){
