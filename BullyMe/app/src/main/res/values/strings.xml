@@ -10,5 +10,10 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_stop">Stop</string>
-
+    <!--
+    Value name:Question type:Question content
+    -->
+    <array name="Questions">
+        <value>name:text:What is your name?</value>
+    </array>
 </resources>

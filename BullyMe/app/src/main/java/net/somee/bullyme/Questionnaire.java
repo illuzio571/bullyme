@@ -12,9 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import org.w3c.dom.Document;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Questionnaire extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,6 +53,34 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
                         .setAction("Action", null).show();
             }
         });
+
+        List<String> files = Arrays.asList(this.fileList());
+
+        try {
+            FileOutputStream outputStream = openFileOutput("answers", MODE_PRIVATE);
+            outputStream.write("text".getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String[] questions = getResources().getStringArray(R.array.Questions);
+
+        for (String question: questions) {
+            String[] questionData = question.split(":");
+            String name = questionData[0];
+            String type = questionData[1];
+            String content = questionData[2];
+
+            TextView questionText = findViewById(R.id.txtQuestion);
+            questionText.setText(content);
+            LinearLayout linearLayout = findViewById(R.id.linearLayout);
+            if (type.equals("text")) {
+                EditText editText = new EditText(this);
+                editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                linearLayout.addView(editText);
+            }
+        }
     }
 
     @Override
