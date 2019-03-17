@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-
         try {
             TypedValue outValue = new TypedValue();
             getResources().getValue(R.dimen.notification_intervalInHours, outValue, true);
