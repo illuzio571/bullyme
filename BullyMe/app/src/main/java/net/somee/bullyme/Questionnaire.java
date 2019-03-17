@@ -18,8 +18,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Document;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +30,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Questionnaire extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    int currentQuestion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,43 +49,87 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //TODO: Next Button
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        final String[] questions = getResources().getStringArray(R.array.Questions);
+        final LinearLayout linearLayout = findViewById(R.id.linearLayout);
+
+        String[] questionData = questions[0].split(";");
+        String name = questionData[0];
+        String type = questionData[1];
+        String content = questionData[2];
+
+        TextView questionText = findViewById(R.id.txtQuestion);
+        questionText.setText(content);
+
+        if (type.equals("text")) {
+            EditText editText = new EditText(this);
+            editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            linearLayout.addView(editText);
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                if (currentQuestion < questions.length) {
+                    int prevQuestion = currentQuestion;
+                    ++currentQuestion;
+
+                    String[] prevQuestionData = questions[prevQuestion].split(";");
+                    String prevName = prevQuestionData[0];
+                    String prevType = prevQuestionData[1];
+                    try {
+                        FileOutputStream outputStream = openFileOutput("answers", MODE_APPEND);
+
+                        if (prevType.equals("text")) {
+                            EditText editText = (EditText) linearLayout.getChildAt(0);
+                            outputStream.write(("{" + prevName + "};" + editText.getText() + '\n').getBytes());
+                        }
+
+                        outputStream.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (currentQuestion < questions.length) {
+                        String[] questionData = questions[currentQuestion].split(";");
+                        String type = questionData[1];
+                        String content = questionData[2];
+
+                        linearLayout.removeAllViews();
+                        TextView questionText = findViewById(R.id.txtQuestion);
+                        questionText.setText(content);
+
+                        if (type.equals("text")) {
+                            EditText editText = new EditText(Questionnaire.this);
+                            editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                            linearLayout.addView(editText);
+                        }
+                    } else {
+//                        try {
+//                            FileInputStream inputStream = openFileInput("answers");
+//                            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                            StringBuilder sb = new StringBuilder();
+//                            String line;
+//                            while ((line = bufferedReader.readLine()) != null) {
+//                                sb.append(line + " ");
+//                            }
+//                            inputStreamReader.close();
+//
+//                            Snackbar.make(v, sb.toString(), Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        Questionnaire.this.finish();
+                    }
+
+                }
             }
         });
-
-        List<String> files = Arrays.asList(this.fileList());
-
-        try {
-            FileOutputStream outputStream = openFileOutput("answers", MODE_PRIVATE);
-            outputStream.write("text".getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String[] questions = getResources().getStringArray(R.array.Questions);
-
-        for (String question: questions) {
-            String[] questionData = question.split(":");
-            String name = questionData[0];
-            String type = questionData[1];
-            String content = questionData[2];
-
-            TextView questionText = findViewById(R.id.txtQuestion);
-            questionText.setText(content);
-            LinearLayout linearLayout = findViewById(R.id.linearLayout);
-            if (type.equals("text")) {
-                EditText editText = new EditText(this);
-                editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                linearLayout.addView(editText);
-            }
-        }
     }
 
     @Override

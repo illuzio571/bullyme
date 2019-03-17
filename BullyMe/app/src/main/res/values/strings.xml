@@ -14,9 +14,10 @@
     <!--
     Value name:Question type:Question content
     -->
-    <array name="Questions">
-        <value>name:text:What is your name?</value>
-    </array>
+    <string-array name="Questions">
+        <item>name;text;What is your name?</item>
+        <item>test;text;This is a test.</item>
+    </string-array>
 
     <string name="channel_id">bullyMe</string>
     <string name="channel_name">BullyMe</string>
