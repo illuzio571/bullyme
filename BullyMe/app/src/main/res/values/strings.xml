@@ -4,7 +4,7 @@
     <string name="app_name">BullyMe</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">Get bullied, kid</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -57,7 +57,6 @@
         <item>do you really think;that you look half-decent?</item>
         <item>no wonder;{crush} doesn\'t want to date you</item>
         <item>i\'d rather drink soylent every day;than talk with you, {name}</item>
-        <item></item>
 
     </string-array>
 

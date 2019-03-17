@@ -49,11 +49,16 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        TypedValue outValue = new TypedValue();
-        getResources().getValue(R.dimen.notification_intervalInHours, outValue, true);
-        double hours = outValue.getFloat();
 
-        notification.SetAlarm(this, hours);
+        try {
+            TypedValue outValue = new TypedValue();
+            getResources().getValue(R.dimen.notification_intervalInHours, outValue, true);
+            double hours = outValue.getFloat();
+
+            notification.SetAlarm(this, hours);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

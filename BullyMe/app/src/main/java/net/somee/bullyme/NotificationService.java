@@ -18,11 +18,15 @@ public class NotificationService extends Service {
 
     public void onStart(Context context,Intent intent, int startId)
     {
-        TypedValue outValue = new TypedValue();
-        getResources().getValue(R.dimen.notification_intervalInHours, outValue, true);
-        double value = outValue.getFloat();
+        try {
+            TypedValue outValue = new TypedValue();
+            getResources().getValue(R.dimen.notification_intervalInHours, outValue, true);
+            double value = outValue.getFloat();
 
-        alarm.SetAlarm(context, value);
+            alarm.SetAlarm(context, value);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

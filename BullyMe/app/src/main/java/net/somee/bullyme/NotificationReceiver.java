@@ -39,34 +39,36 @@ public class NotificationReceiver extends BroadcastReceiver {
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "bullyMe:wakeLockTag");
         wl.acquire(10000);
 
-        //Dynamically generate a notification
+        try {
+            //Dynamically generate a notification
+            String title = "";
+            String content = "";
 
-        String title = "";
-        String content = "";
+            //Choose a notification
+            createNotificationChannel(context);
+            String[] notifInfo = getNotificationInformation(context);
 
-        //Choose a notification
-        createNotificationChannel(context);
-        String[] notifInfo = getNotificationInformation(context);
+            title = notifInfo[0];
+            content = notifInfo[1];
 
-        title = notifInfo[0];
-        content = notifInfo[1];
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, context.getString(R.string.channel_id))
+                    .setSmallIcon(R.drawable.ic_app_transparent)
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, context.getString(R.string.channel_id))
-                .setSmallIcon(R.drawable.ic_app_transparent)
-                .setContentTitle(title)
-                .setContentText(content)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            //Use the characters in the title to generate a unique ID based off the MD5 hash of the title
+            int sum = 0;
+            for (char var : getMD5(title).toCharArray()) {
+                sum += var;
+            }
 
-        //Use the characters in the title to generate a unique ID based off the MD5 hash of the title
-        int sum = 0;
-        for (char var : getMD5(title).toCharArray()){
-            sum += var;
+            //Build and send the notification
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            notificationManager.notify(sum, builder.build());
+        } catch (Exception e){
+            e.printStackTrace();
         }
-
-        //Build and send the notification
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(sum, builder.build());
-
         //End Event
         wl.release();
     }
@@ -107,6 +109,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         //50 - 50 shot of getting a personalized or generic notification
         Random rand = new Random();
         int random = rand.nextInt(2);
+        random = rand.nextInt(2);
 
         //If they answered the questionnaire, random from both. If not, give generic
         if (answers.size() > 0) {
