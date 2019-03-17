@@ -51,7 +51,7 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             this.finish();
-        } else if (id == R.id.nav_questionnaire) {
+        }/* else if (id == R.id.nav_questionnaire) {
             Intent intent = new Intent(this, Questionnaire.class);
             startActivity(intent);
             this.finish();
@@ -59,7 +59,7 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
             Intent intent = new Intent(this, Schedule.class);
             startActivity(intent);
             this.finish();
-        } else if (id == R.id.nav_stop) {
+        }*/ else if (id == R.id.nav_stop) {
             Intent intent = new Intent(this, Stop.class);
             startActivity(intent);
             this.finish();

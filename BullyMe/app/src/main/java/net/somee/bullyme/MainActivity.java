@@ -1,10 +1,10 @@
 package net.somee.bullyme;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,13 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -66,17 +67,25 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        try {
+            PackageManager manager = this.getPackageManager();
+            PackageInfo info;
+            info = manager.getPackageInfo(this.getPackageName(), 0);
+            if (info != null) {
+                long firstInstallTime = info.firstInstallTime;
+                long currentTime = new Date().getTime();
+                long difference = currentTime - firstInstallTime;
+                int days = (int) (difference / (1000*60*60*24));
+
+                TextView txtDays = findViewById(R.id.txtDays);
+                txtDays.setText(days + " day(s)");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         List<String> files = Arrays.asList(this.fileList());
 
@@ -106,7 +115,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             this.finish();
-        } else if (id == R.id.nav_questionnaire) {
+        } /*else if (id == R.id.nav_questionnaire) {
             Intent intent = new Intent(this, Questionnaire.class);
             startActivity(intent);
             this.finish();
@@ -114,7 +123,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, Schedule.class);
             startActivity(intent);
             this.finish();
-        } else if (id == R.id.nav_stop) {
+        }*/ else if (id == R.id.nav_stop) {
             Intent intent = new Intent(this, Stop.class);
             startActivity(intent);
             this.finish();

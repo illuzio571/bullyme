@@ -1,5 +1,5 @@
 <resources>
-    <item name="notification_intervalInHours" format="float" type="dimen">0.001</item>
+    <item name="notification_intervalInHours" format="float" type="dimen">3</item>
 
     <string name="app_name">BullyMe</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -17,7 +17,7 @@
     Value name:Question type:Question content
     -->
     <string-array name="Questions">
-        <item>test;bool;This is a test.</item>
+        <!--<item>test;bool;This is a test.</item>-->
         <item>name;text;What is your name?</item>
         <item>age;text;How old are you?</item>
         <item>mom;text;What\'s your mom\'s name?</item>
@@ -58,6 +58,10 @@
         <item>do you really think;that you look half-decent?</item>
         <item>no wonder;{crush} doesn\'t want to date you</item>
         <item>i\'d rather drink soylent every day;than talk with you, {name}</item>
+        <item>{name} is;ugly</item>
+        <item>{name} is;stupid</item>
+        <item>{name} is;fat</item>
+        <item>{name} is;smelly</item>
 
     </string-array>
 

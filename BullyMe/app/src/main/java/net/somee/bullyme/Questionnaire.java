@@ -18,18 +18,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Document;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Questionnaire extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -200,7 +192,7 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             this.finish();
-        } else if (id == R.id.nav_questionnaire) {
+        }/* else if (id == R.id.nav_questionnaire) {
             Intent intent = new Intent(this, Questionnaire.class);
             startActivity(intent);
             this.finish();
@@ -208,7 +200,7 @@ public class Questionnaire extends AppCompatActivity implements NavigationView.O
             Intent intent = new Intent(this, Schedule.class);
             startActivity(intent);
             this.finish();
-        } else if (id == R.id.nav_stop) {
+        }*/ else if (id == R.id.nav_stop) {
             Intent intent = new Intent(this, Stop.class);
             startActivity(intent);
             this.finish();

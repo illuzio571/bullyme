@@ -9,14 +9,6 @@
             android:icon="@drawable/ic_menu_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_questionnaire"
-            android:icon="@drawable/ic_menu_questionnaire"
-            android:title="Questionnaire" />
-        <item
-            android:id="@+id/nav_schedule"
-            android:icon="@drawable/ic_menu_schedule"
-            android:title="Schedule" />
-        <item
             android:id="@+id/nav_stop"
             android:icon="@drawable/ic_menu_stop"
             android:title="Stop Bullying" />
