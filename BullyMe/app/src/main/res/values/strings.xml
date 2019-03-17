@@ -10,10 +10,15 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_stop">Stop</string>
+
     <!--
     Value name:Question type:Question content
     -->
     <array name="Questions">
         <value>name:text:What is your name?</value>
     </array>
+
+    <string name="channel_id">bullyMe</string>
+    <string name="channel_name">BullyMe</string>
+    <string name="channel_description">BullyMe Main Channel</string>
 </resources>
