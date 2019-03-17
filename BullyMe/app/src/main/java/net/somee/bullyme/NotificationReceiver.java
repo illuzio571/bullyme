@@ -108,10 +108,11 @@ public class NotificationReceiver extends BroadcastReceiver {
         Random rand = new Random();
         int random = rand.nextInt(2);
 
+        //If they answered the questionnaire, random from both. If not, give generic
         if (answers.size() > 0) {
             if (random == 0) {
                 //Grab the personalized version of the notification as a string array { title, content}
-                String notification = personalizedNotifications.get(personalizedNotifications.size() - 1);
+                String notification = personalizedNotifications.get(rand.nextInt(personalizedNotifications.size()));
                 notificationToSend = getPersonalizedNotification(context, notification).split(";", -1);
             } else {
                 //Grab the generic version as a string array { title, content}
