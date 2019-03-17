@@ -22,7 +22,7 @@
         <item>mom;text;What\'s your mom\'s name?</item>
         <item>dad;text;What\'s your dad\'s name?</item>
         <item>origin;text;Where are you from?</item>
-        <item>food;text;What's your favorite food?</item>
+        <item>food;text;What\'s your favorite food?</item>
         <item>operating_system;text;Favorite operating system? (Windows, Mac, Linux)</item>
         <item>video_game;text;Best video game ever made?</item>
         <item>religion;text;What religion are you?</item>
