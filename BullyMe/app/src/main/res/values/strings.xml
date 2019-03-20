@@ -33,6 +33,7 @@
     <!--
     {title};{content}
     \ to escape '
+    max is 40;40 characters
     -->
     <string-array name="Notifications">
         <item>i honestly don\'t know;why you even bother</item>
@@ -49,7 +50,6 @@
         <item>{video_game} vs barbies?;barbies every time</item>
         <item>only little kids;play {video_game}</item>
         <item>what\'s better than {video_game}?:fortnite</item>
-        <item>let me tell you a secret..;{religion}s are stupid</item>
         <item>Message from {crush}!;just kidding, they\'d never DM you</item>
         <item>guess who i found out is gay?;{dad}..surprised it wasn\'t you</item>
         <item>i once ate {mom}\'s cooking..;..the dog finished it</item>
@@ -62,6 +62,34 @@
         <item>{name} is;stupid</item>
         <item>{name} is;fat</item>
         <item>{name} is;smelly</item>
+        <item>hey im running out of insults;send me a selfie for inspiration</item>
+        <item>did you know;that you\'re my inspiration for these insults?</item>
+        <item>if laughter is the best medicine;your face must be curing the world</item>
+        <item>i\'m not insulting you;i\'m describing you</item>
+        <item>surprise me;by saying something intelligent</item>
+        <item>i really wish that you\'d uninstall me;so i wouldn\'t have to deal with you</item>
+        <item>it\'s funny how an idiot like you;can carry something called a smartphone</item>
+        <item>brains aren\'t everything;in your case they\'re nothing</item>
+        <item>if you don\'t understand these jokes;i\'m not surprised</item>
+        <item>it\'s really impressive how someone;as stupid as you can be so confident</item>
+        <item>roses are red, violets are blue;i\'m pretty, what happened to you?</item>
+        <item>the last time i saw something like you;i flushed it</item>
+        <item>if ugly were a crime;you\'d get a life sentence</item>
+        <item>you\'re not as bad as people say;you\'re worse</item>
+        <item>you\'re the reason;that the gene pool needs a lifeguard</item>
+        <item>how do you tell people that you\'re {age};if you can\'t even count that high?</item>
+        <item>you\'re like monday mornings;nobody likes you</item>
+        <item>what\'s worse than dealing with homework?;dealing with you</item>
+        <item>i was thinking about you earlier..;..i was looking up local zoos</item>
+        <item>you\'re so fat;you could sell shade</item>
+        <item>you\'re the type of person;that would get hit by a parked car</item>
+        <item>DINOSAUR SPOTTED IN: {origin};..wait, it was just you being fat</item>
+        <item>sorry that i\'m so mean;just kidding</item>
+        <item>do you hear wind blowing?;oh, that\'s just your empty skull..</item>
+        <item>you know what works too well?;this app</item>
+        <item>know what\'s going too well? your life..;..jk that\'s a freaking train wreck</item>
+        <item>hahahahahaha;sorry was just laughing at you again</item>
+        <item>oh my gosh that is hilarious;sorry was thinking about you again</item>
 
     </string-array>
 
